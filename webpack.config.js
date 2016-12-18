@@ -2,7 +2,7 @@ module.exports = {
   context: __dirname,
   entry: {
     jsx: "./src/index.jsx",
-    css: "./src/main.css",
+    //css: "./src/main.css",
     html: "./src/index.html",
   },
 
@@ -13,12 +13,14 @@ module.exports = {
   module: {
     preLoaders: [
         //Eslint loader
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: "eslint-loader"},
+      //{ test: /\.jsx?$/, exclude: /node_modules/, loader: "eslint-loader"},
     ],
     loaders: [
       { test: /\.html$/, loader: "file?name=[name].[ext]" },
-      { test: /\.css$/, loader: "file?name=[name].[ext]" },
+      //{ test: /\.css$/, loader: "file?name=[name].[ext]" },
+      { test: /\.css$/, loader: "style-loader!css-loader" },
       { test: /\.jsx?$/, exclude: /node_modules/, loaders: ["react-hot","babel-loader"]},
+     // { test: require.resolve("material-design-lite/material"), loader: "exports?componentHandler" }
     ],
   },
   resolve: {

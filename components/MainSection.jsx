@@ -80,6 +80,11 @@ class MainSection extends Component {
           )}
         </List>
         {this.renderFooter(completedCount)}
+
+        <div className="mdl-avatar mdl-js-avatar mdl-avatar--floating-label" >
+    <input className="mdl-avatar__input" type="text" name="profile_image" id="profile_image" value="images/pic.png" onChange={() => {}}/>
+    <label className="mdl-avatar__label" htmlFor="profile_image">Profile Image</label>
+</div>
       </section>
     );
   }

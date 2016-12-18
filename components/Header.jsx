@@ -2,7 +2,8 @@ import React, { PropTypes, Component } from 'react';
 import TodoTextInput from './TodoTextInput';
 
 import AppBar from 'material-ui/AppBar';
-
+import Avatar from 'material-ui/Avatar';
+import { List, ListItem, ListItemContent, ListItemAction, IconButton } from 'react-mdl';
 const defaultStyle = {
   marginLeft: 20
 };
@@ -15,9 +16,15 @@ class Header extends Component {
   }
 
   render() {
+    const avatar = (
+        <Avatar
+          src="images/pic.png"
+          size={56}
+          style={{marginRight: '10px'}}
+        />
+        );
     return (
       <header className="header">
-          <AppBar title="React + Redux + Material UI Boilerplate" />
           <h1 style={defaultStyle} >todos</h1>
           <TodoTextInput newTodo
                          onSave={this.handleSave.bind(this)}
