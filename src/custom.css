@@ -77,3 +77,7 @@
     width: 150px;
     height: 150px;
 }
+
+.mdl-list__item .mdl-list__item-primary-content {
+	*flex-grow: 0
+}
