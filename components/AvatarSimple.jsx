@@ -56,8 +56,7 @@ export default class AvatarSimple extends React.Component {
 		this.state = {
 		person: this.props.persons[0],
 		handleSearch : false
-	  };
-	  this.handleClick = this.handleClick.bind(this);	  
+	  };	  
 	}
 	
 	handleClick(contact) {

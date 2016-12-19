@@ -24,15 +24,14 @@ export default class SelectFieldSimple extends Component {
     return (
       <div>
         <SelectField
-          floatingLabelText="Frequency"
+          floatingLabelText="Grade"
           value={this.state.value}
           onChange={this.handleChange}
         >
-          <MenuItem value={1} primaryText="Never" />
-          <MenuItem value={2} primaryText="Every Night" />
-          <MenuItem value={3} primaryText="Weeknights" />
-          <MenuItem value={4} primaryText="Weekends" />
-          <MenuItem value={5} primaryText="Weekly" />
+          <MenuItem value={1} primaryText="SE-JP" />
+          <MenuItem value={2} primaryText="SE-PG" />
+          <MenuItem value={3} primaryText="SE-AP" />
+          <MenuItem value={4} primaryText="SE-AN" />
         </SelectField>
       </div>
     );

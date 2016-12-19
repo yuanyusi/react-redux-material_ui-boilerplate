@@ -5,13 +5,20 @@ import {
 		ListItem,
 		ListItemContent
 } from 'react-mdl';
-
+const desc = [
+			'Optimize performance at customer projects',
+			'Working & implementing web portal using Liferay & gatein portal Internet banking system',
+			'Managing & deploying & releasing production',
+			'Lead IMB ODC team (7 members)',
+			'Tools & Technology: InteliJ IDE, Jenkins, Git, Maven, sorna',
+			'Other'
+			];
 export default class EditInline extends React.Component {
   constructor(props) {
     super(props);
         this.dataChanged = this.dataChanged.bind(this);
       this.state = {
-        message: 'Bryan Cranston'
+        message: desc
       }
 	}
 
@@ -29,34 +36,31 @@ export default class EditInline extends React.Component {
   render() {
 
     return (
-	<div>
-            <h2>{this.state.message}</h2>
+		<div>
             <span>JOB DESCRIPTION: </span>
 			
-			<List>
-			  <ListItem> <ListItemContent icon="person" >
+			<List >
+			{this.state.message.map((c) => (
+			  <ListItem style={{display:'block',padding:'0px', minHeight: '2px'}}> <ListItemContent icon="radio_button_checked" >
 			  <InlineEdit
 				  validate={this.customValidateText}
 				  activeClassName="editing"
-				  text={this.state.message}
+				  text={c}
 				  paramName="message"
 				  change={this.dataChanged}
 				  style={{
-					minWidth: 150,
+					minWidth: 500,
 					display: 'inline-block',
 					margin: 0,
 					padding: 0,
-					fontSize: 15,
+					fontSize: 14,
 					outline: 0,
 					border: 0
 				  }}
 				/></ListItemContent>
 			  </ListItem>
-			  <ListItem>Aaron Paul</ListItem>
-			  <ListItem>Bob Odenkirk</ListItem>
+			))}
 			</List>
-            
-			
         </div>
     )
   }

@@ -41,7 +41,7 @@ export default class ImageUpload extends React.Component {
 	$imagePreview = (
 				<Avatar
 				  src={imagePreviewUrl? imagePreviewUrl:this.props.image}
-				  size={200}			  
+				  size={100}			  
 				/>
 	)
     return (
