@@ -81,3 +81,7 @@
 .mdl-list__item .mdl-list__item-primary-content {
 	*flex-grow: 0
 }
+
+.mdl-list__item .mdl-list__item-primary-content .mdl-list__item-icon {
+    margin-right: 0
+}
