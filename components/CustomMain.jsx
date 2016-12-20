@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import AvatarSimple from '../components/AvatarSimple';
 import SelectFieldSimple from '../components/SelectFieldSimple';
 import SelectFieldDivision from '../components/SelectFieldDivision';
+import TableSimple from '../components/TableSimple';
 import ImageUpload from '../components/ImageUpload';
 import EditInline from '../components/EditInline';
 import contactsArray from '../data/contactsArray'
@@ -11,6 +12,7 @@ import SelectField from 'material-ui/SelectField';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
+import Divider from 'material-ui/Divider';
 
 import SearchInput, {createFilter} from 'react-search-input'
 import ActionGrade from 'material-ui/svg-icons/action/grade';
@@ -46,8 +48,7 @@ const styles = {
   },
   headline: {
     fontSize: 24,
-    marginBottom: 12,
-	marginTop: 12,
+    margin: 12,
 	display:'inherit',
     fontWeight: 400,
   }
@@ -125,9 +126,6 @@ class CustomMain extends Component {
 
     handleChange = (event, index, value) => this.setState({value: value});
 
-openDatePicker(){
-  this.refs.dp.openDialog()
-}
   render() {
 	const filteredEmployees = contactsArray.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
 
@@ -189,8 +187,11 @@ openDatePicker(){
 		<Cell col={8} style={{width: '100%'}}>
 		<t.Tabs>
 				<t.Tab icon={<Icon name="person" />} style={{backgroundColor: 'rgb(92, 106, 192)', height:'inherit'}} >
-				  <div style={{padding: '0px 0px 0px 10px'}}>
-					<span style={styles.headline}><IconButton name="filter_list" onClick={showForm}/>Employee Management</span>
+				<h2 style={styles.headline}>Employee Management</h2>
+					
+				  <div style={{padding: '0px 0px 0px 12px'}}>
+					  {/*<span style={styles.headline}><IconButton name="filter_list" onClick={showForm}/>Employee Management</span>*/}
+					
 						<Grid style={{margin: '0px'}}>
 							<Cell col={6} style={{minWidth: '270px'}}>							
 								
@@ -251,26 +252,6 @@ openDatePicker(){
 								  value={this.state.person.phone}
 								  disabled={this.state.disabledFlag}
 								/>
-								
-								{/*<Textfield
-									onChange={() => {}}
-									pattern="-?[0-9]*(\.[0-9]+)?"
-									error="Input is not a number!"
-									label="Number..."
-									floatingLabel
-									disabled={this.state.disabledFlag}
-								/>
-								
-								<Textfield
-									onChange={() => {}}
-									label="Text lines..."
-									rows={3}
-									style={{width: '300px'}}
-									floatingLabel
-									disabled={this.state.disabledFlag}
-									value={this.state.person.image}
-								/>*/}
-
 							</Cell>
 						<Cell col={5} style={{minWidth: '270px'}}>
 											<TextField
@@ -330,11 +311,214 @@ openDatePicker(){
 				</t.Tab>
 				<t.Tab style={{backgroundColor: 'rgb(92, 106, 192)'}}
 				  icon={<Icon name="history" />} >
-				  <div>
-					<h2 style={styles.headline}>Employement History</h2>
-					<EditInline />
+				  <h2 style={styles.headline}>Employement History</h2>
+					
+				  <div style={{height:'548px', overflowY: 'scroll'}}>
+					<Grid>
+						<Cell col={3} style={{borderRight: '0.25px solid', borderRightColor:'silver', marginLeft:'10px'}}>
+											<TextField
+											  value='JANUARY'
+											  inputStyle={{textAlign:'right'}}
+											  style={{width:'50px', fontSize:'10px', height:'15px'}}
+											  underlineShow={false}
+											/>
+																						
+											<span
+											  style={{width:'50px'}}
+											>       </span>
+											<TextField
+											  hintStyle=''
+											  style={{width:'100px', fontSize:'10px', height:'15px'}}
+											   underlineShow={false}
+											/>
 
+											<div style={{height:'30px'}}>						
+											<TextField
+											  value='2014'
+											  inputStyle={{textAlign:'right'}}
+											  style={{width:'50px',height:'20px', fontSize:'20px'}}
+											  underlineShow={false}
+											/>
+											<span
+											  style={{width:'50px'}}
+											>    -    </span>
+											
+											<TextField
+											  value='PRESENT'
+											  style={{width:'100px', height:'20px', fontSize:'20px'}}
+											  underlineShow={false}
+											/>
+											</div>
+											<Divider style={{marginLeft:'60px', marginRight:'20px'}} />
+											
+											<div style={{height:'100px', float:'right'}}>						
+											
+											<TextField
+											  value='VIET SOFTWARE INTERNATIONAL'
+											  style={{width:'150px', fontSize:'16px', textAlign:'right'}}
+											  textareaStyle={{height:'150px'}}
+											  underlineShow={false}
+											  multiLine
+											/>
+											</div>
+											
+											<div style={{height:'100px', float:'right'}}>						
+											
+											<TextField
+											  value='JAVA DEVELOPER'
+											  style={{width:'100%', height:'60px', fontSize:'12px', textAlign:'right'}}
+											  underlineShow={false}
+											  multiLine
+											/>
+											</div>
+						
+						</Cell>
+						<Cell col={9} style={{marginLeft:'10px'}}>
+											<EditInline />
+						</Cell>
+						
+					</Grid>
+					<Divider />
+					<br />
+					<Grid>
+						<Cell col={3} style={{borderRight: '0.25px solid', borderRightColor:'silver', marginLeft:'10px'}}>
+											<TextField
+											  value='JANUARY'
+											  style={{width:'50px', fontSize:'10px', height:'15px'}}
+											  inputStyle={{textAlign:'right'}}
+											  underlineShow={false}
+											/>
+																						
+											<span
+											  style={{width:'50px'}}
+											>    -    </span>
+											<TextField
+											  hintStyle=''
+											  value='MARCH'
+											  style={{width:'100px', fontSize:'10px', height:'15px'}}
+											   underlineShow={false}
+											/>
+
+											<div style={{height:'30px'}}>						
+											<TextField
+											  value='2014'
+											  inputStyle={{textAlign:'right'}}
+											  style={{width:'50px',height:'20px', fontSize:'20px'}}
+											  underlineShow={false}
+											/>
+											<span
+											  style={{width:'50px'}}
+											>    -    </span>
+											
+											<TextField
+											  value='2104'
+											  style={{width:'100px', height:'20px', fontSize:'20px'}}
+											  underlineShow={false}
+											/>
+											</div>
+											<Divider style={{marginLeft:'60px', marginRight:'20px'}} />
+											
+											<div style={{height:'100px', float:'right'}}>						
+											
+											<TextField
+											  value='EXO PLATFROM'
+											  style={{width:'150px', fontSize:'16px', textAlign:'right'}}
+											  textareaStyle={{height:'150px'}}
+											  underlineShow={false}
+											  multiLine
+											/>
+											</div>
+											
+											<div style={{height:'100px', float:'right'}}>						
+											
+											<TextField
+											  value='JAVA DEVELOPER'
+											  style={{width:'100%', height:'60px', fontSize:'12px', textAlign:'right'}}
+											  underlineShow={false}
+											  multiLine
+											/>
+											</div>
+						
+						</Cell>
+						<Cell col={9} style={{marginLeft:'10px'}}>
+											<EditInline />
+						</Cell>
+						
+					</Grid>
+					<Divider />
+					<br />
+										<Grid>
+						<Cell col={3} style={{borderRight: '0.25px solid', borderRightColor:'silver', marginLeft:'10px'}}>
+											<TextField
+											  value='JANUARY'
+											  style={{width:'50px', fontSize:'10px', height:'15px'}}
+											  inputStyle={{textAlign:'right'}}
+											  underlineShow={false}
+											/>
+																						
+											<span
+											  style={{width:'50px'}}
+											>    -    </span>
+											<TextField
+											  hintStyle=''
+											  value='MARCH'
+											  style={{width:'100px', fontSize:'10px', height:'15px'}}
+											   underlineShow={false}
+											/>
+
+											<div style={{height:'30px'}}>						
+											<TextField
+											  value='2014'
+											  inputStyle={{textAlign:'right'}}
+											  style={{width:'50px',height:'20px', fontSize:'20px'}}
+											  underlineShow={false}
+											/>
+											<span
+											  style={{width:'50px'}}
+											>    -    </span>
+											
+											<TextField
+											  value='2104'
+											  style={{width:'100px', height:'20px', fontSize:'20px'}}
+											  underlineShow={false}
+											/>
+											</div>
+											<Divider style={{marginLeft:'60px', marginRight:'20px'}} />
+											
+											<div style={{height:'100px', float:'right'}}>						
+											
+											<TextField
+											  value='EXO PLATFROM'
+											  style={{width:'150px', fontSize:'16px', textAlign:'right'}}
+											  textareaStyle={{height:'150px'}}
+											  underlineShow={false}
+											  multiLine
+											/>
+											</div>
+											
+											<div style={{height:'100px', float:'right'}}>						
+											
+											<TextField
+											  value='JAVA DEVELOPER'
+											  style={{width:'100%', height:'60px', fontSize:'12px', textAlign:'right'}}
+											  underlineShow={false}
+											  multiLine
+											/>
+											</div>
+						
+						</Cell>
+						<Cell col={9} style={{marginLeft:'10px'}}>
+											<EditInline />
+						</Cell>
+						
+					</Grid>
+					<Divider />
+					<br />
 				  </div>
+				  
+				  <CardTitle style={{color: '#fff', height: '48px', backgroundColor: 'rgb(92, 106, 192)', justifyContent:'flex-end'}}>
+					
+				  </CardTitle>
 				</t.Tab>
 				<t.Tab style={{backgroundColor: 'rgb(92, 106, 192)'}}
 				  icon={<Icon name="layers" />} >
@@ -347,12 +531,8 @@ openDatePicker(){
 				</t.Tab>
 				<t.Tab style={{backgroundColor: 'rgb(92, 106, 192)'}}
 				  icon={<Icon name="wc" />} >
-				  <div>
-					<h2 style={styles.headline}>Family Members</h2>
-					<p>
-					  This is another example tab.
-					</p>
-				  </div>
+				  <h2 style={styles.headline}>Family Members</h2>
+					<TableSimple />
 				</t.Tab>
 				<t.Tab style={{backgroundColor: 'rgb(92, 106, 192)'}}
 				  icon={<Icon name="home" />} >
@@ -365,12 +545,185 @@ openDatePicker(){
 				</t.Tab>
 				<t.Tab style={{backgroundColor: 'rgb(92, 106, 192)'}}
 				  icon={<Icon name="person_pin_circle" />} >
-				  <div>
+				  
 					<h2 style={styles.headline}>Office Location</h2>
-					<p>
-					  This is another example tab.
-					</p>
+ <div style={{height:'548px', overflowY: 'scroll'}}>
+					<Grid>
+						<Cell col={3} style={{borderRight: '0.25px solid', borderRightColor:'silver', marginLeft:'10px'}}>
+											<TextField
+											  value='JANUARY'
+											  inputStyle={{textAlign:'right'}}
+											  style={{width:'50px', fontSize:'10px', height:'15px'}}
+											  underlineShow={false}
+											/>
+																						
+											<span
+											  style={{width:'50px'}}
+											>       </span>
+											<TextField
+											  hintStyle=''
+											  style={{width:'100px', fontSize:'10px', height:'15px'}}
+											   underlineShow={false}
+											/>
+
+											<div style={{height:'30px'}}>						
+											<TextField
+											  value='2014'
+											  inputStyle={{textAlign:'right'}}
+											  style={{width:'50px',height:'20px', fontSize:'20px'}}
+											  underlineShow={false}
+											/>
+											<span
+											  style={{width:'50px'}}
+											>    -    </span>
+											
+											<TextField
+											  value='PRESENT'
+											  style={{width:'100px', height:'20px', fontSize:'20px'}}
+											  underlineShow={false}
+											/>
+											</div>
+											<Divider style={{marginLeft:'60px', marginRight:'20px'}} />
+											
+						
+						
+						</Cell>
+						<Cell col={9} style={{marginLeft:'10px'}}>
+							<SelectFieldDivision />	
+										
+							<TextField
+							  hintText="Address"
+							  floatingLabelText="Address"
+							  floatingLabelFixed={true}
+							  value='Jln. Sidobali No. 2, Muja Muju, Umbulharjo, Yogyakarta 55165'
+							  multiLine
+							  rows={4}
+							  rowsMax={5}
+							/>								
+						</Cell>
+						
+					</Grid>
+					<Divider />
+					<br />
+					<Grid>
+						<Cell col={3} style={{borderRight: '0.25px solid', borderRightColor:'silver', marginLeft:'10px'}}>
+											<TextField
+											  value='JANUARY'
+											  style={{width:'50px', fontSize:'10px', height:'15px'}}
+											  inputStyle={{textAlign:'right'}}
+											  underlineShow={false}
+											/>
+																						
+											<span
+											  style={{width:'50px'}}
+											>    -    </span>
+											<TextField
+											  hintStyle=''
+											  value='MARCH'
+											  style={{width:'100px', fontSize:'10px', height:'15px'}}
+											   underlineShow={false}
+											/>
+
+											<div style={{height:'30px'}}>						
+											<TextField
+											  value='2014'
+											  inputStyle={{textAlign:'right'}}
+											  style={{width:'50px',height:'20px', fontSize:'20px'}}
+											  underlineShow={false}
+											/>
+											<span
+											  style={{width:'50px'}}
+											>    -    </span>
+											
+											<TextField
+											  value='2104'
+											  style={{width:'100px', height:'20px', fontSize:'20px'}}
+											  underlineShow={false}
+											/>
+											</div>
+											<Divider style={{marginLeft:'60px', marginRight:'20px'}} />
+											
+											
+						
+						</Cell>
+						<Cell col={9} style={{marginLeft:'10px'}}>
+							<SelectFieldDivision />	
+							<TextField
+							  hintText="Address"
+							  floatingLabelText="Address"
+							  floatingLabelFixed={true}
+							  value='Jln. Sidobali No. 2, Muja Muju, Umbulharjo, Yogyakarta 55165'
+							  multiLine
+							  rows={4}
+							  rowsMax={5}
+							/>								
+						</Cell>
+						
+					</Grid>
+					<Divider />
+					<br />
+										<Grid>
+						<Cell col={3} style={{borderRight: '0.25px solid', borderRightColor:'silver', marginLeft:'10px'}}>
+											<TextField
+											  value='JANUARY'
+											  style={{width:'50px', fontSize:'10px', height:'15px'}}
+											  inputStyle={{textAlign:'right'}}
+											  underlineShow={false}
+											/>
+																						
+											<span
+											  style={{width:'50px'}}
+											>    -    </span>
+											<TextField
+											  hintStyle=''
+											  value='MARCH'
+											  style={{width:'100px', fontSize:'10px', height:'15px'}}
+											   underlineShow={false}
+											/>
+
+											<div style={{height:'30px'}}>						
+											<TextField
+											  value='2014'
+											  inputStyle={{textAlign:'right'}}
+											  style={{width:'50px',height:'20px', fontSize:'20px'}}
+											  underlineShow={false}
+											/>
+											<span
+											  style={{width:'50px'}}
+											>    -    </span>
+											
+											<TextField
+											  value='2104'
+											  style={{width:'100px', height:'20px', fontSize:'20px'}}
+											  underlineShow={false}
+											/>
+											</div>
+											<Divider style={{marginLeft:'60px', marginRight:'20px'}} />
+											
+											
+						
+						</Cell>
+						<Cell col={9} style={{marginLeft:'10px'}}>
+							<SelectFieldDivision />
+							<TextField
+							  hintText="Address"
+							  floatingLabelText="Address"
+							  floatingLabelFixed={true}
+							  value='Jln. Sidobali No. 2, Muja Muju, Umbulharjo, Yogyakarta 55165'
+							  multiLine
+							  rows={4}
+							  rowsMax={5}
+							/>								
+						</Cell>
+						
+					</Grid>
+					<Divider />
+					<br />
 				  </div>
+				  
+				  <CardTitle style={{color: '#fff', height: '48px', backgroundColor: 'rgb(92, 106, 192)', justifyContent:'flex-end'}}>
+					
+				  </CardTitle>
 				</t.Tab>
 			  </t.Tabs>
 		

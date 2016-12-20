@@ -20,8 +20,10 @@ export default class EditInline extends React.Component {
         this.dataChanged = this.dataChanged.bind(this);
          this.dataCreated = this.dataCreated.bind(this);
          this.datadDeleted = this.datadDeleted.bind(this);
+		 this.addItem = this.addItem.bind(this);
       this.state = {
-        message: desc
+        message: desc,
+		add: false
       }
 	}
 
@@ -44,8 +46,12 @@ export default class EditInline extends React.Component {
 
     }
 
-    	dataCreated(data) {
-             this.setState({ message: [...this.state.message, data.desc] });
+    	addItem(data) {
+             this.setState({ add: true });
+	   }
+	   
+	       	dataCreated(data) {
+             this.setState({ message: [...this.state.message, data.desc], add:false });
 	   }
 
     customValidateText(text) {
@@ -53,16 +59,17 @@ export default class EditInline extends React.Component {
     }
 	
   render() {
-       
+
     return (
 		<div>
-            <span>JOB DESCRIPTION: </span>
-			
+		<div>
+            <span>JOB DESCRIPTION: 
+			 <IconButton name = 'add_circle' style = {{color:'rgba(0, 0, 0, 0.298039)'}} onClick={this.addItem}/></span>
+		</div>	 
 			<List >
 			{this.state.message.map((c, index) => (
 			  <ListItem style={{display:'block',padding:'0px', minHeight: '2px'}}> <ListItemContent icon="radio_button_checked">
-			  <IconButton name = 'delete' style = {{float:'left', color:'rgba(0, 0, 0, 0.298039)' }} onClick={this.datadDeleted.bind(null,index)}/>
-				<InlineEdit
+			  	<InlineEdit
 				  validate={this.customValidateText}
 				  activeClassName="editing"
 				  text={c}
@@ -78,11 +85,14 @@ export default class EditInline extends React.Component {
 					border: 0
 				  }}
 				/>
+				<IconButton name = 'delete' style = {{color:'rgba(0, 0, 0, 0.298039)' }} onClick={this.datadDeleted.bind(null,index)}/>
+			
 				</ListItemContent>
 			  </ListItem>
 			))}
+{ this.state.add ? 
 
-			<ListItem style={{display:'block',padding:'0px', minHeight: '2px'}}> <ListItemContent icon="radio_button_checked" >
+			<ListItem style={{display:'block',padding:'0px', minHeight: '2px'}} > <ListItemContent icon="radio_button_checked" >
 			  <InlineEdit
 				  validate={this.customValidateText}
 				  activeClassName="editing"
@@ -100,6 +110,9 @@ export default class EditInline extends React.Component {
 				  }}
 				/></ListItemContent>
 			  </ListItem>
+
+: null }
+			
 			</List>
         </div>
     )

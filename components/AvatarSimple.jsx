@@ -102,7 +102,7 @@ export default class AvatarSimple extends React.Component {
 	</div>
 	))}
 </List>
-<div className="bd-smoothscroll-3 ">
+<div className="bd-smoothscroll-3">
 
 <CreateEmployeeDialog />
 </div>

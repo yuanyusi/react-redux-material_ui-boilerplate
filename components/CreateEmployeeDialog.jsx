@@ -57,9 +57,9 @@ export default class CreateEmployeeDialog extends React.Component {
 
     return (
       <div>
-	  	    <FABButton ripple colored style={{float:"right"}} onClick={this.handleOpen}>
-    <Icon name="add" />
-</FABButton>
+	  	<FABButton ripple colored style={{float:"right"}} onClick={this.handleOpen}>
+			<Icon name="add" />
+		</FABButton>
        
         <Dialog
           title="Create Employee"
