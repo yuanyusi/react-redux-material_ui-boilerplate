@@ -101,6 +101,7 @@ export default class AvatarSimple extends React.Component {
 	  <Divider />
 	</div>
 	))}
+	{(this.props.persons.length === 0)? <p style={{textAlign: 'center', fontStyle: 'italic', height:'72px', backgroundColor:'rgba(0, 0, 0, 0.298039)'}}> <br />We couldn't find what you were looking for </p>: null}
 </List>
 <div className="bd-smoothscroll-3">
 

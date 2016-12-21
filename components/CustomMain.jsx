@@ -14,9 +14,7 @@ import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
 
-import SearchInput, {createFilter} from 'react-search-input'
-import ActionGrade from 'material-ui/svg-icons/action/grade';
-import {orange500} from 'material-ui/styles/colors';
+import SearchInput, {createFilter} from 'react-search-input';
 
 import {
 	    Icon, 
@@ -73,7 +71,8 @@ class CustomMain extends Component {
 			persons: contactsArray,
 			person: contactsArray[0],
 			searchTerm: '',
-			searchStatus:false
+			searchStatus:false,
+			employeeForm: 'show',
 	    };
 
 		this.updateDimensions = this.updateDimensions.bind(this);
@@ -94,13 +93,23 @@ class CustomMain extends Component {
 	}
 
     searchUpdated (term) {
-		var fe = contactsArray.filter(createFilter(term.target.value, KEYS_TO_FILTERS))
+		var fe = this.state.persons;
+		if (term.target.value.length >= 3){
+			fe = contactsArray.filter(createFilter(term.target.value, KEYS_TO_FILTERS))
+		} else if (term.target.value.length == 0 ){
+		fe = contactsArray.filter(createFilter("", KEYS_TO_FILTERS));}
 		this.setState({
-	    searchTerm: term.target.value,
-	    searchStatus: true,
-		person: fe[0],
-		persons: fe
-	    })
+			searchTerm: term.target.value,
+			searchStatus: true,
+			person: fe[0],
+			persons: fe
+			})
+		if (fe.length == 0){
+			alert (fe.length)
+			this.setState({employeeForm: 'hide'})
+			}
+		else
+			this.setState({employeeForm: 'show'});
 		//alert (term.target.value)
 		
 	}
@@ -133,6 +142,9 @@ class CustomMain extends Component {
 	'display': this.state.displayGrid ? 'flex' : 'none'
 	} 
 
+
+	
+	
 	const showCard = {
 	'display': this.state.displayCard ? 'flex' : 'none',
 	margin:'auto',
@@ -173,7 +185,12 @@ class CustomMain extends Component {
 
 		<CardMenu style={{color: '#fff',position: 'absolute', right: '0px', top: '0px'}}>
 			<IconButton className="muidocs-icon-custom-sort" name=""  style={{top: '4px'}}/>
-			<IconButton name="filter_list" style={{top: '5px'}} onClick={showForm}/>
+			<IconButton name="filter_list" style={{top: '5px'}} onClick={showForm} id="filter-menu"/>
+						<Menu target="filter-menu" align="right">
+				<MenuItem onClick={this.clickActive} >Active</MenuItem>
+				<MenuItem>In Active</MenuItem>
+				<MenuItem>Reset</MenuItem>
+			</Menu>
 			<Chip style={styles.chip}>{this.state.persons.length}</Chip>	
 			<IconButton name="more_vert" id="demo-menu-lower-right" style={{top: '5px'}}/>
 			<Menu target="demo-menu-lower-right" align="right">
@@ -188,11 +205,9 @@ class CustomMain extends Component {
 		<t.Tabs>
 				<t.Tab icon={<Icon name="person" />} style={{backgroundColor: 'rgb(92, 106, 192)', height:'inherit'}} >
 				<h2 style={styles.headline}>Employee Management</h2>
-					
-				  <div style={{padding: '0px 0px 0px 12px'}}>
-					  {/*<span style={styles.headline}><IconButton name="filter_list" onClick={showForm}/>Employee Management</span>*/}
-					
-						<Grid style={{margin: '0px'}}>
+					{(this.state.employeeForm === 'show')? 
+				  <div>
+					  	<Grid style={{margin: '0px', padding: '0px 0px 0px 12px'}}>
 							<Cell col={6} style={{minWidth: '270px'}}>							
 								
 								<TextField
@@ -304,10 +319,18 @@ class CustomMain extends Component {
 							<ImageUpload image={this.state.person.image} style={{float:'right'}}/>
 							</Cell>
 						</Grid>	
-				  </div>
-				  <CardTitle style={{color: '#fff', height: '48px', backgroundColor: 'rgb(92, 106, 192)', justifyContent:'flex-end'}}>
+						<CardTitle style={{color: '#fff', height: '48px', backgroundColor: 'rgb(92, 106, 192)', justifyContent:'flex-end'}}>
 					<Button raised accent ripple onClick={disabledForm}>Edit</Button>
 				  </CardTitle>
+				  </div>
+
+					: 
+					<div>
+				  <p style={{height:'476px', paddingLeft:'10px'}}> <br />There is no data to be displayed</p>
+				  						<CardTitle style={{color: '#fff', height: '48px', backgroundColor: 'rgb(92, 106, 192)', justifyContent:'flex-end'}}>
+				  </CardTitle>
+				  </div>
+					}
 				</t.Tab>
 				<t.Tab style={{backgroundColor: 'rgb(92, 106, 192)'}}
 				  icon={<Icon name="history" />} >
