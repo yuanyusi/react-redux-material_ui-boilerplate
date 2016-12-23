@@ -77,6 +77,7 @@ class CustomMain extends Component {
 
 		this.updateDimensions = this.updateDimensions.bind(this);
 		this.searchUpdated = this.searchUpdated.bind(this);		
+		this.clickActive = this.clickActive.bind(this);		
 	}
 
 	updateDimensions() {
@@ -93,7 +94,7 @@ class CustomMain extends Component {
 	}
 
     searchUpdated (term) {
-		var fe = this.state.persons;
+		var fe = data.sortedthis.state.persons;
 		if (term.target.value.length >= 3){
 			fe = contactsArray.filter(createFilter(term.target.value, KEYS_TO_FILTERS))
 		} else if (term.target.value.length == 0 ){
@@ -105,7 +106,6 @@ class CustomMain extends Component {
 			persons: fe
 			})
 		if (fe.length == 0){
-			alert (fe.length)
 			this.setState({employeeForm: 'hide'})
 			}
 		else
@@ -116,6 +116,18 @@ class CustomMain extends Component {
 
 	updateSearchStatus(e){
 		this.setState({ searchStatus: e})		
+	}
+	
+	clickActive(e){
+		//alert ('test');
+		//var fl;
+		//var FILTERS = ['isActive'];
+		if (e == 'Active'){
+			//alert ('test');
+			//fl = contactsArray.filter(createFilter('true', FILTERS));
+			//alert (fl.name);
+		}
+		//this.setState({ searchStatus: e})		
 	}
   
     /**
@@ -136,14 +148,10 @@ class CustomMain extends Component {
     handleChange = (event, index, value) => this.setState({value: value});
 
   render() {
-	const filteredEmployees = contactsArray.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
-
+	
 	const showGrid = {
 	'display': this.state.displayGrid ? 'flex' : 'none'
 	} 
-
-
-	
 	
 	const showCard = {
 	'display': this.state.displayCard ? 'flex' : 'none',
@@ -187,9 +195,9 @@ class CustomMain extends Component {
 			<IconButton className="muidocs-icon-custom-sort" name=""  style={{top: '4px'}}/>
 			<IconButton name="filter_list" style={{top: '5px'}} onClick={showForm} id="filter-menu"/>
 						<Menu target="filter-menu" align="right">
-				<MenuItem onClick={this.clickActive} >Active</MenuItem>
+				<MenuItem onClick={this.clickActive('Active')} >Active</MenuItem>
 				<MenuItem>In Active</MenuItem>
-				<MenuItem>Reset</MenuItem>
+				<MenuItem>All</MenuItem>
 			</Menu>
 			<Chip style={styles.chip}>{this.state.persons.length}</Chip>	
 			<IconButton name="more_vert" id="demo-menu-lower-right" style={{top: '5px'}}/>

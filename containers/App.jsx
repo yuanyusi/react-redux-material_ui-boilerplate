@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 //import Header from '../components/Header';
+//import MainSection from '../components/MainSection';
 import CustomHeader from '../components/CustomHeader';
 import CustomMain from '../components/CustomMain';
-//import MainSection from '../components/MainSection';
 import * as TodoActions from '../actions/todos';
 
 // For Customization Options, edit  or use
